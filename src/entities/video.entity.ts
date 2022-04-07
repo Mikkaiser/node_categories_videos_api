@@ -1,6 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
-import { Category } from "./Category";
+import { Category } from "./category.entity";
 
 @Entity('videos')
 export class Video {
@@ -22,13 +22,13 @@ export class Video {
     @Column()
     duration: number;
 
-    @Column('category_id')
+    @Column({name: 'category_id'})
     categoryId: string;
 
-    @ManyToOne(() => Category, category => category.videos)
+    @ManyToOne(() => Category)
     @JoinColumn({ name: 'category_id' })
     category: Category;
 
-    @CreateDateColumn('created_at')
+    @CreateDateColumn({name: 'created_at'})
     createdAt: Date;
 }
