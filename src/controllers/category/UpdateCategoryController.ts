@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { Category } from "../entities/category.entity";
-import { UpdateCategoryService } from "../services/UpdateCategoryService";
+import { UpdateCategoryService } from "../../services/category/UpdateCategoryService";
 
 export class UpdateCategoriesController {
     async handle(request: Request, response: Response) : Promise<Category | Object>{

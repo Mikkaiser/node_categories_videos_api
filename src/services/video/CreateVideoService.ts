@@ -10,8 +10,8 @@ type VideoRequest = {
 }
 
 export class CreateVideoService {
-    async execute(video: VideoRequest) : Promise<Video |Object> {
-        const { name, description, categoryId } = video;
+    async execute(video: VideoRequest) : Promise<Video | Object> {
+        const { name, description, categoryId, duration } = video;
 
         const repo = getRepository(Video);
         const categoryRepo = getRepository(Category);
@@ -20,7 +20,10 @@ export class CreateVideoService {
         if(!category)
             return { error: 'Category does not exists' }
 
-        const video = repo.create({ name, description, duration, categoryId })
+        const videoCreated = repo.create({ name, description, duration, categoryId });
 
+        await repo.save(videoCreated);
+
+        return videoCreated;
     }
 }

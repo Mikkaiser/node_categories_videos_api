@@ -1,4 +1,4 @@
-import { Category } from "../entities/category.entity";
+import { Category } from "../../entities/category.entity";
 import { getRepository } from "typeorm";
 
 export class DeleteCategoryService {
